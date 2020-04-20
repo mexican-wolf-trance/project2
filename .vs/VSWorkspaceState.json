@@ -5,6 +5,6 @@
     "\\lib\\middleware",
     "\\routes"
   ],
-  "SelectedNode": "\\db.js",
+  "SelectedNode": "\\routes\\mongoRoute.js",
   "PreviewInSolutionExplorer": false
 }

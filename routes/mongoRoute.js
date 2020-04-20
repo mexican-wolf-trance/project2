@@ -1,9 +1,8 @@
 const express = require("express");
 //const bodyParser = require("../../lib/middleware/bodyParser");
 const mongoose = require("mongoose");
-const NodeCache = require("node-cache")
 
-const dataURL = "https://jsonplaceholder.typicode.com"
+const dataURL = "mongodb://127.0.0.1:27017/data"
 
 const allPosts = mongoose.model("allposts", {
     userId: Number,
@@ -26,18 +25,15 @@ const users = mongoose.model("users", {
     }
 })
 
-const getAllPosts = async (req, res) =>
-{
-    try
-    {
+const getAllPosts = async (req, res) => {
+    try {
         mongoose.connect(dataURL, { useNewUrlParser: true });
         const results = await allPosts.find().exec();
         mongoose.disconnect();
 
         res.send(results);
     }
-    catch (error)
-    {
+    catch (error) {
         mongoose.disconnect();
 
         console.log(error);
@@ -45,11 +41,9 @@ const getAllPosts = async (req, res) =>
         res.send(error);
     }
 }
-const getUserPost = async (req, res) =>
-{
+const getUserPost = async (req, res) => {
     var userPosts = []
-    try
-    {
+    try {
         mongoose.connect(dataURL, { useNewUrlParser: true });
         const postResults = await allPosts.find().exec();
         mongoose.disconnect();
@@ -57,8 +51,7 @@ const getUserPost = async (req, res) =>
         mongoose.connect(dataURL, { useNewUrlParser: true })
         const userResults = await users.find().exec();
 
-        while (postResults.userId)
-        {
+        while (postResults.userId) {
             if (postResults.userId === userResults.userId)
                 userPosts = postResults.body
         }
@@ -66,8 +59,7 @@ const getUserPost = async (req, res) =>
 
         res.send(userPosts)
     }
-    catch (error)
-    {
+    catch (error) {
         mongoose.disconnect();
         console.error("error", error);
 
@@ -76,10 +68,8 @@ const getUserPost = async (req, res) =>
     }
 };
 
-const getPostIdPost = async (req, res) =>
-{
-    try
-    {
+const getPostIdPost = async (req, res) => {
+    try {
         mongoose.connect(dataURL, { useNewUrlParser: true });
         const results = await allPosts.find({
             id: req.params.id,
@@ -88,8 +78,7 @@ const getPostIdPost = async (req, res) =>
 
         res.send(results.body);
     }
-    catch (error)
-    {
+    catch (error) {
         mongoose.disconnect();
         console.error("error", error);
 
@@ -98,10 +87,8 @@ const getPostIdPost = async (req, res) =>
     }
 };
 
-const getUserName = async (req, res) =>
-{
-    try
-    {
+const getUserName = async (req, res) => {
+    try {
         mongoose.connect(dataURL, { useNewUrlParser: true });
         const results = await users.find({
             username: req.params.username,
@@ -110,8 +97,7 @@ const getUserName = async (req, res) =>
 
         res.send(results.name);
     }
-    catch (error)
-    {
+    catch (error) {
         mongoose.disconnect();
         console.error("error", error);
 
@@ -120,15 +106,15 @@ const getUserName = async (req, res) =>
     }
 }
 
-const jplRouter = express.Router();
+const mongoRouter = express.Router();
 
-jplRouter.route("/posts").get(getAllPosts);
+mongoRouter.route("/posts").get(getAllPosts);
 
-jplRouter.route("/:username").get(getUserPost);
+mongoRouter.route("/:username").get(getUserPost);
 
-jplRouter.route("/:id").get(getPostIdPost);
+mongoRouter.route("/:id").get(getPostIdPost);
 
-jplRouter.route("/:username").get(getUserName);
+mongoRouter.route("/:username").get(getUserName);
 
 
-module.exports = jplRouter
+module.exports = mongoRouter

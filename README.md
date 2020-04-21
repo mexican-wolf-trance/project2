@@ -16,7 +16,7 @@ This retieves all of the posts made by users in beautiful json
 
 If you would like to get all of the posts made by a specific user, type:
 
-### jpl/allPosts/<username>
+### jpl/allPosts/(username)
 This retrieves all the posts made by the user
 
 Next, perhaps you would like to see a specific post you happen to know the id for...
@@ -27,7 +27,7 @@ And that will return the posts for which you are looking
 
 Finally, for the jplRoute, if you would like to see the profile of a user, type:
 
-### jpl/profile/<username>
+### jpl/profile/(username)
 And that will bring up their informaion
 
 ## The mongoRoute
@@ -40,7 +40,7 @@ Secondly, since we can manipulte the data on our own serve, there are some addit
 
 For instance! Now you can add a post to a specific usernames account! Just type in
 
-###/mongo/addPost/<username> along with a title and a body in body of the put like so:
+###/mongo/addPost/(username) along with a title and a body in body of the put like so:
 
 ```
 {
@@ -52,7 +52,7 @@ Send it and the function will automatically apply the userId and the message id.
 
 You can also update that same post or anyt other post where you know the id. Just type:
 
-###/mongo/updatePost/<id> allong with the message to be added like so:
+###/mongo/updatePost/(id) allong with the message to be added like so:
 ```
 {
 	"body": "This is the updated message!"
@@ -62,7 +62,7 @@ The function will add all of the other information about the post for you.
 ###FINALLY
 You can now delete a specific post! Just type:
 
-### /mongo/deletePost/<id>
+### /mongo/deletePost/(id)
 And POOF! It will be gone. 
 
 And that's it! I sure hope you enjoy it and give this student a 100 on it lol!

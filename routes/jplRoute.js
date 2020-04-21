@@ -25,8 +25,9 @@ const getAllPosts = async (req, res) =>
 const getUserPost = async (req, res) =>
 {
     var userPosts = []
-    var username = req.params.username
-    var thisUser
+    var searchUsername = req.params.username
+    console.log(searchUsername)
+    var thisUser, x, y
     try
     {
         const postsResponse = await fetch(dataURL + "/posts");
@@ -36,19 +37,21 @@ const getUserPost = async (req, res) =>
         const usersResponse = await fetch(dataURL + "/users");
         const usersJson = await usersResponse.json();
         const allUsers = usersJson.map(obj => obj);
-        console.log(allUsers)
-
-        while (allUsers.username === username)
+        
+        for (x in allUsers)
         {
-            thisUser = allUsers
+            if (allUsers[x].username === searchUsername)
+            {
+                thisUser = allUsers[x];
+            }
         }
-
-        while (allPosts.userId < 11)
+        for (y in allPosts)
         {
-            if (allPosts.userId === thisUser.userId)
-                userPosts = allPosts.body
+            if (thisUser.id === allPosts[y].userId) {
+                console.log(allPosts[y]);
+                userPosts[y] = allPosts[y];
+            }
         }
-
         res.send(userPosts)
     }
     catch (error)
@@ -59,53 +62,71 @@ const getUserPost = async (req, res) =>
     }
 };
 
-//const getPostIdPost = async (req, res) =>
-//{
-//    try
-//    {
-//        mongoose.connect(dataURL, { useNewUrlParser: true });
-//        const results = await allPosts.find({
-//            id: req.params.id,
-//        }).exec();
-//        mongoose.disconnect();
+const getPostIdPost = async (req, res) =>
+{
+    const postID = req.params.id
+    var x, thisPost
+    try
+    {
+        const postsResponse = await fetch(dataURL + "/posts");
+        const postsJson = await postsResponse.json();
+        const allPosts = postsJson.map(obj => obj);
 
-//        res.send(results.body);
-//    }
-//    catch (error)
-//    {
-//        mongoose.disconnect();
-//        console.error("error", error);
+        for (x in allPosts)
+        {
+            if (allPosts[x].id == postID)
+                thisPost = allPosts[x]
+            else thisPost = "No exist"
+        }
 
-//        res.status(500);
-//        res.send(error);
-//    }
-//};
 
-//const getUserName = async (req, res) =>
-//{
-//    try
-//    {
-//        res.send(results.name);
-//    }
-//    catch (error)
-//    {
-//        mongoose.disconnect();
-//        console.error("error", error);
+        res.send(thisPost);
+    }
+    catch (error)
+    {
+        console.error("error", error);
 
-//        res.status(500);
-//        res.send(error);
-//    }
-//}
+        res.status(500);
+        res.send(error);
+    }
+};
+
+const getUserName = async (req, res) =>
+{
+    const username = req.params.username
+    var x, thisUser
+    try
+    {
+        const usersResponse = await fetch(dataURL + "/users");
+        const usersJson = await usersResponse.json();
+        const allUsers = usersJson.map(obj => obj);
+
+        for (x in allUsers)
+        {
+            if (allUsers[x].username === username)
+                console.log(allUsers[x])
+                thisUser = allUsers[x]
+        }
+        res.send(thisUser);
+    }
+    catch (error)
+    {
+        console.error("error", error);
+
+        res.status(500);
+        res.send(error);
+    }
+}
 
 const jplRouter = express.Router();
 
 jplRouter.route("/allPosts").get(getAllPosts);
 
-jplRouter.route("allPosts/:username").get(getUserPost);
+jplRouter.route("/allPosts/:username").get(getUserPost);
 
-//jplRouter.route("posts/:id").get(getPostIdPost);
+jplRouter.route("/posts/:id").get(getPostIdPost);
 
-//jplRouter.route("profile/:username").get(getUserName);
+jplRouter.route("/profile/:username").get(getUserName);
 
 
 module.exports = jplRouter

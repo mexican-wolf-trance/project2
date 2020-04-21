@@ -11,23 +11,23 @@ The second pulls information from a local instance of MongoDB
 ### Each route has a specific function
 For instance, if you woud like to view all of the user posts, tpe in the following into a URL bar:
 
-### jpl/allPosts
+### /jpl/allPosts
 This retieves all of the posts made by users in beautiful json
 
 If you would like to get all of the posts made by a specific user, type:
 
-### jpl/allPosts/(username)
+### /jpl/allPosts/(username)
 This retrieves all the posts made by the user
 
 Next, perhaps you would like to see a specific post you happen to know the id for...
 Simple! Type:
 
-### jpl/posts/(id)
+### /jpl/posts/(id)
 And that will return the posts for which you are looking
 
 Finally, for the jplRoute, if you would like to see the profile of a user, type:
 
-### jpl/profile/(username)
+### /jpl/profile/(username)
 And that will bring up their informaion
 
 ## The mongoRoute

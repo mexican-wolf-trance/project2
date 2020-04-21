@@ -6,7 +6,7 @@ It does stuff!
 The jplRoute calls directly from the jsonplaceholder.typecode.com data set
 The second pulls information from a local instance of MongoDB
 
-##The jplRoute
+## The jplRoute
 
 ### Each route has a specific function
 For instance, if you woud like to view all of the user posts, tpe in the following into a URL bar:
@@ -40,7 +40,7 @@ Secondly, since we can manipulte the data on our own serve, there are some addit
 
 For instance! Now you can add a post to a specific usernames account! Just type in
 
-###/mongo/addPost/(username) along with a title and a body in body of the put like so:
+### /mongo/addPost/(username) along with a title and a body in body of the put like so:
 
 ```
 {
@@ -52,7 +52,7 @@ Send it and the function will automatically apply the userId and the message id.
 
 You can also update that same post or anyt other post where you know the id. Just type:
 
-###/mongo/updatePost/(id) allong with the message to be added like so:
+### /mongo/updatePost/(id) allong with the message to be added like so:
 ```
 {
 	"body": "This is the updated message!"
@@ -60,7 +60,7 @@ You can also update that same post or anyt other post where you know the id. Jus
 ```
 The function will add all of the other information about the post for you.
 
-###FINALLY
+### FINALLY
 You can now delete a specific post! Just type:
 
 ### /mongo/deletePost/(id)

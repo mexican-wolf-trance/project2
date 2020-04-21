@@ -57,6 +57,7 @@ You can also update that same post or anyt other post where you know the id. Jus
 {
 	"body": "This is the updated message!"
 }
+```
 The function will add all of the other information about the post for you.
 
 ###FINALLY

@@ -48,7 +48,7 @@ For instance! Now you can add a post to a specific usernames account! Just type 
 	"body": "This is my message!"
 }
 ```
-Send it and the function will automatically apply the userId and the message id. Easy Peasy!
+Send it as POST and the function will automatically apply the userId and the message id. Easy Peasy!
 
 You can also update that same post or any other post where you know the id. Just type:
 
@@ -58,10 +58,10 @@ You can also update that same post or any other post where you know the id. Just
 	"body": "This is the updated message!"
 }
 ```
-The function will add all of the other information about the post for you.
+The PATCH function will add all of the other information about the post for you.
 
 ### FINALLY
-You can now delete a specific post! Just type:
+You can now delete a specific post! Just type as a DELETE message:
 
 ### /mongo/deletePost/(id)
 And POOF! It will be gone. 

@@ -74,9 +74,12 @@ const getPostIdPost = async (req, res) =>
 
         for (x in allPosts)
         {
+            console.log(postID)
+            console.log(allPosts[x].id)
             if (allPosts[x].id == postID)
+            {
                 thisPost = allPosts[x]
-            else thisPost = "No exist"
+            }
         }
 
 
@@ -104,7 +107,6 @@ const getUserName = async (req, res) =>
         for (x in allUsers)
         {
             if (allUsers[x].username === username)
-                console.log(allUsers[x])
                 thisUser = allUsers[x]
         }
         res.send(thisUser);

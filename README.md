@@ -22,7 +22,7 @@ This retrieves all the posts made by the user
 Next, perhaps you would like to see a specific post you happen to know the id for...
 Simple! Type:
 
-### jpl/posts/<id>
+### jpl/posts/(id)
 And that will return the posts for which you are looking
 
 Finally, for the jplRoute, if you would like to see the profile of a user, type:

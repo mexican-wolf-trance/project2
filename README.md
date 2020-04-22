@@ -3,7 +3,7 @@ It does stuff!
 
 # Instructions for use:
 ## There are two main routes:
-The jplRoute calls directly from the jsonplaceholder.typecode.com dataset
+The jplRoute calls directly from the jsonplaceholder.typecode.com dataset\n
 The mongoRoute pulls information from a local instance of MongoDB
 
 ## The jplRoute
@@ -12,7 +12,9 @@ The mongoRoute pulls information from a local instance of MongoDB
 For instance, if you woud like to view all of the user posts, type in the following into a URL bar:
 
 ### /jpl/allPosts
-This retieves all of the posts made by users in beautiful json
+This retieves all of the posts made by users in beautiful json 
+
+(Be sure you're using GET for all of these routes)
 
 If you would like to get all of the posts made by a specific user, type:
 
@@ -28,13 +30,13 @@ And that will return the posts for which you are looking
 Finally, for the jplRoute, if you would like to see the profile of a user, type:
 
 ### /jpl/profile/(username)
-And that will bring up their informaion
+And that will bring up their information
 
 ## The mongoRoute
 
 ### These routes are exactly the same as the ones above with a few additions..
 
-Firstly, be sure to replace 'jpl' with 'mongo' when typing in the route
+Firstly, be sure to replace 'jpl' with 'mongo' when typing in the route (and that they're also GET)
 
 Secondly, since we can manipulte the data on our own server, there are some addition functions
 
@@ -44,7 +46,7 @@ For instance! Now you can add a post to a specific usernames account! Just type 
 
 ```
 {
-	"title": "This is the title!"
+	"title": "This is the title!",
 	"body": "This is my message!"
 }
 ```

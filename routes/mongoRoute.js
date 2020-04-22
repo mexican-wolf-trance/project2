@@ -147,8 +147,8 @@ const addPost = async(req, res) =>
         const userResults = await users.find({
             username: req.params.username,
         }).exec();
-        const userid = userResults[0].id;
-        const userPosts = await allPosts.find({ userId: userid }).exec();
+        //const userid = userResults[0].id;
+        const userPosts = await allPosts.find().exec();
 
         var max_id;
         for (y = 0; y < userPosts.length; y++)
